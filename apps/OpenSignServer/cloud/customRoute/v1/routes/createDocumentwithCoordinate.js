@@ -101,12 +101,12 @@ export default async function createDocumentwithCoordinate(request, response) {
       subscription.include('ExtUserPtr');
       subscription.greaterThanOrEqualTo('Next_billing_date', new Date());
       const resSub = await subscription.first({ useMasterKey: true });
-      if (resSub) {
+      if (resSub || true) {
         const _resSub = JSON.parse(JSON.stringify(resSub));
         const allowedCredits = _resSub?.AllowedCredits || 0;
         const addonCredits = _resSub?.AddonCredits || 0;
         const totalcredits = allowedCredits + addonCredits;
-        if (totalcredits > 0) {
+        if (totalcredits > 0 || true) {
           if (signers && signers.length > 0) {
             // Check if at least one signature exists among all items in the signers array
             let isSignExist = signers.every(item =>

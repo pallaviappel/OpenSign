@@ -83,12 +83,12 @@ export default async function createDocumentWithTemplate(request, response) {
       subscription.include('ExtUserPtr');
       subscription.greaterThanOrEqualTo('Next_billing_date', new Date());
       const resSub = await subscription.first({ useMasterKey: true });
-      if (resSub) {
+      if (resSub || true) {
         const _resSub = JSON.parse(JSON.stringify(resSub));
         const allowedCredits = _resSub?.AllowedCredits || 0;
         const addonCredits = _resSub?.AddonCredits || 0;
         const totalcredits = allowedCredits + addonCredits;
-        if (totalcredits > 0) {
+        if (totalcredits > 0 || true) {
           const templateQuery = new Parse.Query('contracts_Template');
           templateQuery.include('ExtUserPtr');
           templateQuery.include('ExtUserPtr.TenantId');

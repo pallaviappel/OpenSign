@@ -267,12 +267,12 @@ async function batchQuery(userId, Documents, Ip, parseConfig) {
         subscription.include('ExtUserPtr');
         subscription.greaterThanOrEqualTo('Next_billing_date', new Date());
         const resSub = await subscription.first({ useMasterKey: true });
-        if (resSub) {
+        if (resSub || true) {
           const _resSub = JSON.parse(JSON.stringify(resSub));
           const allowedCredits = _resSub?.AllowedCredits || 0;
           const addonCredits = _resSub?.AddonCredits || 0;
           const totalcredits = allowedCredits + addonCredits;
-          if (requests?.length <= totalcredits) {
+          if (requests?.length <= totalcredits || true) {
             const response = await axios.post('batch', { requests: requests }, parseConfig);
             // Handle the batch query response
             // console.log('Batch query response:', response.data);
