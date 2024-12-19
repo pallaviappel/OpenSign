@@ -74,9 +74,9 @@ function App() {
           <Routes>
             <Route element={<ValidateRoute />}>
               <Route exact path="/" element={<Login />} />
-              {isEnableSubscription && (
+              {/* {isEnableSubscription && ( */}
                 <Route path="/signup" element={<LazyPage Page={Signup} />} />
-              )}
+              {/* )} */}
               {!isEnableSubscription && (
                 <>
                   <Route
@@ -123,7 +123,7 @@ function App() {
               path="/forgetpassword"
               element={<LazyPage Page={ForgetPassword} />}
             />
-            {isEnableSubscription && (
+            {!isEnableSubscription && (
               <>
                 <Route
                   path="/pgsignup"
@@ -185,7 +185,7 @@ function App() {
                 path="/recipientSignPdf/:docId"
                 element={<PdfRequestFiles />}
               />
-              {isEnableSubscription && (
+              {!isEnableSubscription && (
                 <>
                   <Route path="/teams" element={<TeamList />} />
                   <Route
